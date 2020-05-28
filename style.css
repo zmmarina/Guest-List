@@ -27,6 +27,7 @@
 
 body{
     font-family: 'Roboto', sans-serif;
+    
 }
 
 h2{
@@ -34,16 +35,20 @@ h2{
     margin-bottom: 20px;   
 }
 
-#form{
+#names{
+    color: grey;
+    font-weight: regular;
+    font-size: 20px;
+    text-align: center;      
+}
+
+form{
     width: 100%;
     max-width: 800px;
     margin: 0 auto 15%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    outline: none;
-    box-shadow: none;
-   
+          
 }
 
 input{
@@ -56,7 +61,7 @@ input:focus{
     outline: none;
 }
 
-#form button{
+form button{
     background: white;
     width: 150px;
     height: 40px;
@@ -68,11 +73,12 @@ input:focus{
     transition: 400ms;
 }
 
-#form button:hover{
+form button:hover{
     background-color: salmon;
     color: white;
     text-decoration: none;
 }
+
 
 #footer{
     padding: 0px;
@@ -82,8 +88,7 @@ input:focus{
 }
 
 #footer p {
-    padding-top: 0px;
-    
+    padding-top: 0px;    
 }
 
 #footer a {
