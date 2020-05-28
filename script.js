@@ -42,6 +42,21 @@ function activateInput(){
 
 function render(){
 
+    function createDeleteButton(index){
+        let button = document.createElement("button");
+        button.classList.add("deleteButton");
+        button.textContent= "x";
+
+        button.addEventListener("click", deleteName);
+
+        function deleteName(){
+            guestList.splice(index, 1);
+            render();
+        }
+
+        return button;
+    }
+
     let divNames = document.querySelector("#names");
     divNames.innerHTML= "";
 
@@ -51,14 +66,21 @@ function render(){
         let currentName = guestList[i];
 
         let li = document.createElement("li");
-        li.textContent = currentName;
+        let button = createDeleteButton(i);
+        
+        let span = document.createElement("span");
+        span.textContent = currentName;
+
+        li.appendChild(button);
+        li.appendChild(span);
         ul.appendChild(li);
     }
-    
+
     divNames.appendChild(ul);
+    clearInput();
 }
 
 function clearInput(){
-    inputName.clear();
-    inputName.focus
+    inputName.value="";
+    inputName.focus();
 }

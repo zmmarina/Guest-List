@@ -30,6 +30,11 @@ body{
     
 }
 
+ul,
+li{
+    list-style-type: none;
+}
+
 h2{
     text-align: center;
     margin-bottom: 20px;   
@@ -99,4 +104,12 @@ form button:hover{
 
 #footer a:hover {
     color: gray;
+}
+
+.deleteButton{
+    color: white;
+    font-weight: bold;
+    background-color: darkred;
+    margin-right: 4px;
+    border-radius: 50%;
 }
