@@ -2,6 +2,8 @@ window.addEventListener("load", start);
 
 let guestList = ['Sophia Schmit', 'George Connelly', 'Mikael Star', 'Lilly Happer'];
 let inputName = null;
+let currentIndex = null;
+let isEditing = false;
 
 function start(){
 
@@ -27,9 +29,30 @@ function activateInput(){
     inputName.focus();
     inputName.addEventListener("keyup", handleTyping);
 
+    function updateName(newName){
+        guestList[currentIndex] = newName;
+    }
+
     function handleTyping(event){
+        
+        let hasText = !!event.target.value && event.target.value.trim() !== "";
+
+        if (!hasText){
+            clearInput();
+            return;
+        }
+
         if (event.key === "Enter"){
-            insertName(event.target.value);
+            if (isEditing){
+                updateName(event.target.value)
+            }
+            else{
+                insertName(event.target.value);
+            }
+
+            isEditing = false;   
+            clearInput();
+            render();         
         }
     }
 
@@ -57,6 +80,22 @@ function render(){
         return button;
     }
 
+    function createSpan(name, index){
+        let span = document.createElement("span");
+        span.classList.add("clickable");
+        span.textContent = name;
+        span.addEventListener("click", editItem);
+
+        function editItem(){
+            inputName.value = name;
+            inputName.focus();
+            isEditing = true;
+            currentIndex = index;
+        }
+
+        return span;
+    }
+
     let divNames = document.querySelector("#names");
     divNames.innerHTML= "";
 
@@ -67,12 +106,11 @@ function render(){
 
         let li = document.createElement("li");
         let button = createDeleteButton(i);
+        let span = createSpan(currentName, i);
         
-        let span = document.createElement("span");
-        span.textContent = currentName;
-
         li.appendChild(button);
         li.appendChild(span);
+
         ul.appendChild(li);
     }
 
